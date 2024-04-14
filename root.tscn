@@ -1,74 +1,106 @@
-[gd_scene load_steps=10 format=3 uid="uid://c35l7cxxgurie"]
+[gd_scene load_steps=22 format=3 uid="uid://c35l7cxxgurie"]
 
-[ext_resource type="Texture2D" uid="uid://bq5lysipagjqh" path="res://art/goodGuy-Sheet.png" id="1_41233"]
-[ext_resource type="Texture2D" uid="uid://cp5qx6ropj6fh" path="res://art/badGuy-Sheet.png" id="2_16x7p"]
+[ext_resource type="Script" path="res://root.gd" id="1_882b2"]
+[ext_resource type="Texture2D" uid="uid://dnrmr40amjl4i" path="res://art/W_key.png" id="2_hbnmh"]
+[ext_resource type="Texture2D" uid="uid://cd2ra0ki4qht5" path="res://art/A_key.png" id="3_5hone"]
 [ext_resource type="PackedScene" uid="uid://b87njudih7dx6" path="res://key_set.tscn" id="3_75buc"]
+[ext_resource type="Texture2D" uid="uid://ctqkub1qos2ve" path="res://art/S_key.png" id="4_674ko"]
+[ext_resource type="Texture2D" uid="uid://dmpnjlyr5ular" path="res://art/D_key.png" id="5_l2jmt"]
+[ext_resource type="Texture2D" uid="uid://bxusp7huoqiwj" path="res://art/W_key_success.png" id="6_2ki7r"]
+[ext_resource type="Texture2D" uid="uid://dhxv7wkigq53o" path="res://art/A_key_success.png" id="7_6nps8"]
+[ext_resource type="Texture2D" uid="uid://daq5xjsr7t62n" path="res://art/S_key_success.png" id="8_1ad6c"]
+[ext_resource type="Texture2D" uid="uid://coinx4bilu7cw" path="res://art/D_key_success.png" id="9_jwc20"]
+[ext_resource type="Texture2D" uid="uid://11yfrotc8k6f" path="res://art/W_key_fail.png" id="10_gysvo"]
+[ext_resource type="Texture2D" uid="uid://cw72nl0c4lkfx" path="res://art/A_key_fail.png" id="11_ovjt7"]
+[ext_resource type="Texture2D" uid="uid://cn0ixb1jqvhji" path="res://art/S_key_fail.png" id="12_pradt"]
+[ext_resource type="Texture2D" uid="uid://mk4spxcl0fub" path="res://art/D_key_fail.png" id="13_pq0ht"]
+[ext_resource type="PackedScene" uid="uid://bgcrey6lr8xlt" path="res://player.tscn" id="14_bhjfg"]
+[ext_resource type="PackedScene" uid="uid://dl7j40q2monf4" path="res://enemy.tscn" id="15_175gv"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ig1wa"]
-atlas = ExtResource("1_41233")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqdem"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8cwk8"]
-atlas = ExtResource("1_41233")
-region = Rect2(32, 0, 32, 32)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d0bh"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bg6ci"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ig1wa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8cwk8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3e5a"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_642qm"]
-atlas = ExtResource("2_16x7p")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkws6"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t2ttx"]
-atlas = ExtResource("2_16x7p")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ivgbf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_642qm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t2ttx")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p178h"]
 
 [node name="root" type="Node2D"]
+script = ExtResource("1_882b2")
+w_key = ExtResource("2_hbnmh")
+a_key = ExtResource("3_5hone")
+s_key = ExtResource("4_674ko")
+d_key = ExtResource("5_l2jmt")
+w_key_success = ExtResource("6_2ki7r")
+a_key_success = ExtResource("7_6nps8")
+s_key_success = ExtResource("8_1ad6c")
+d_key_success = ExtResource("9_jwc20")
+w_key_fail = ExtResource("10_gysvo")
+a_key_fail = ExtResource("11_ovjt7")
+s_key_fail = ExtResource("12_pradt")
+d_key_fail = ExtResource("13_pq0ht")
+Enemy = ExtResource("15_175gv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(192, 496)
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_bg6ci")
-frame_progress = 0.256363
+[node name="RandKeyChangeTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(960, 504)
-scale = Vector2(5, 5)
-sprite_frames = SubResource("SpriteFrames_ivgbf")
-frame_progress = 0.201831
+[node name="Player" parent="." instance=ExtResource("14_bhjfg")]
+position = Vector2(192, 152)
+damage_intake = 10
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Player Health" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 256.0
+offset_right = 268.0
+offset_bottom = 279.0
+text = "Player Health: 100"
+
+[node name="Enemy" parent="." instance=ExtResource("15_175gv")]
+position = Vector2(1192, 152)
+damage_intake = 25
+
+[node name="Enemy Health" type="Label" parent="."]
+offset_left = 848.0
+offset_top = 256.0
+offset_right = 992.0
+offset_bottom = 279.0
+text = "Enemy Health: 100"
+
+[node name="mainPanel" type="Panel" parent="."]
+offset_top = 344.0
 offset_right = 1152.0
-offset_bottom = 304.0
+offset_bottom = 648.0
 
-[node name="Sequence" type="Label" parent="Panel"]
+[node name="Key Set" parent="mainPanel" instance=ExtResource("3_75buc")]
+position = Vector2(328, 176)
+
+[node name="Key Set2" parent="mainPanel" instance=ExtResource("3_75buc")]
+position = Vector2(480, 176)
+
+[node name="Key Set3" parent="mainPanel" instance=ExtResource("3_75buc")]
+position = Vector2(632, 176)
+
+[node name="Key Set4" parent="mainPanel" instance=ExtResource("3_75buc")]
+position = Vector2(784, 176)
+
+[node name="GetReady" type="Label" parent="mainPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Sequence" type="Label" parent="mainPanel"]
 layout_mode = 0
 offset_left = 472.0
 offset_top = 48.0
@@ -77,22 +109,93 @@ offset_bottom = 93.0
 theme_override_font_sizes/font_size = 32
 text = "Sequence: "
 
-[node name="Keys" type="Label" parent="Panel"]
+[node name="Keys" type="Label" parent="mainPanel"]
 layout_mode = 0
-offset_left = 256.0
+offset_left = 264.0
 offset_top = 248.0
-offset_right = 362.0
+offset_right = 370.0
 offset_bottom = 271.0
 text = "Keys Pressed:"
 
-[node name="Key Set" parent="." instance=ExtResource("3_75buc")]
-position = Vector2(192, 176)
+[node name="HBoxContainer" type="HBoxContainer" parent="mainPanel"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 240.0
+offset_right = 672.0
+offset_bottom = 272.0
+alignment = 1
 
-[node name="Key Set2" parent="." instance=ExtResource("3_75buc")]
-position = Vector2(904, 176)
+[node name="user_key1" type="Node2D" parent="mainPanel/HBoxContainer"]
+position = Vector2(32, 16)
 
-[node name="Key Set3" parent="." instance=ExtResource("3_75buc")]
-position = Vector2(672, 176)
+[node name="user_key2" type="Node2D" parent="mainPanel/HBoxContainer"]
+position = Vector2(96, 16)
 
-[node name="Key Set4" parent="." instance=ExtResource("3_75buc")]
-position = Vector2(432, 176)
+[node name="user_key3" type="Node2D" parent="mainPanel/HBoxContainer"]
+position = Vector2(160, 16)
+
+[node name="user_key4" type="Node2D" parent="mainPanel/HBoxContainer"]
+position = Vector2(224, 16)
+
+[node name="Timer" type="Timer" parent="mainPanel/HBoxContainer"]
+wait_time = 0.5
+
+[node name="sequenceComplete" type="Label" parent="mainPanel"]
+visible = false
+layout_mode = 0
+offset_left = 856.0
+offset_top = 56.0
+offset_right = 1003.0
+offset_bottom = 79.0
+text = "Attack Summoned!"
+
+[node name="gameOverPanel" type="Panel" parent="."]
+visible = false
+offset_left = 344.0
+offset_top = 80.0
+offset_right = 736.0
+offset_bottom = 392.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bqdem")
+
+[node name="Restart" type="Button" parent="gameOverPanel"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 144.0
+offset_right = 248.0
+offset_bottom = 178.0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_5d0bh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c3e5a")
+text = "Restart"
+
+[node name="Quit" type="Button" parent="gameOverPanel"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 192.0
+offset_right = 248.0
+offset_bottom = 226.0
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_bkws6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_p178h")
+text = "Quit"
+
+[node name="GameOver" type="Label" parent="gameOverPanel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 56.0
+offset_right = 294.0
+offset_bottom = 101.0
+theme_override_font_sizes/font_size = 32
+text = "Game Over!
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemySpawn" type="Marker2D" parent="."]
+position = Vector2(1192, 152)
+
+[connection signal="timeout" from="RandKeyChangeTimer" to="." method="_on_rand_key_change_timer_timeout"]
+[connection signal="tree_exited" from="Enemy" to="." method="_on_enemy_tree_exited"]
+[connection signal="timeout" from="mainPanel/HBoxContainer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="gameOverPanel/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="gameOverPanel/Quit" to="." method="_on_quit_pressed"]

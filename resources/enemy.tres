@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Participant" load_steps=4 format=3 uid="uid://cjx4jmp12ifiu"]
+
+[ext_resource type="Texture2D" uid="uid://yisx3e4cu0qp" path="res://art/orb.png" id="1_l88so"]
+[ext_resource type="Script" path="res://resources/participant.gd" id="1_rc10s"]
+[ext_resource type="Texture2D" uid="uid://cp5qx6ropj6fh" path="res://art/badGuy-Sheet.png" id="3_rbbrv"]
+
+[resource]
+script = ExtResource("1_rc10s")
+texture = ExtResource("3_rbbrv")
+attack_texture = ExtResource("1_l88so")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgcrey6lr8xlt"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_ke13b"]
+[ext_resource type="SpriteFrames" uid="uid://w1k0xv4ajd8b" path="res://resources/playerSpriteFrames.tres" id="2_g753r"]
+[ext_resource type="PackedScene" uid="uid://io03iidw3ohi" path="res://attack.tscn" id="2_u3lh0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g7hxp"]
+radius = 32.0
+height = 128.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_ke13b")
+Attack = ExtResource("2_u3lh0")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("2_g753r")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(40, 0)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["player"]]
+shape = SubResource("CapsuleShape2D_g7hxp")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

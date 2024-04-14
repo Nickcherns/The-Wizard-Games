@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Participant" load_steps=4 format=3 uid="uid://x55dmjaqanvk"]
+
+[ext_resource type="Texture2D" uid="uid://b2ux2bcrqci6g" path="res://art/enemyOrb.png" id="1_4c3xs"]
+[ext_resource type="Script" path="res://resources/participant.gd" id="1_40cyb"]
+[ext_resource type="Texture2D" uid="uid://bq5lysipagjqh" path="res://art/goodGuy-Sheet.png" id="3_4iu1p"]
+
+[resource]
+script = ExtResource("1_40cyb")
+texture = ExtResource("3_4iu1p")
+attack_texture = ExtResource("1_4c3xs")

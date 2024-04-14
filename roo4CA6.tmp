@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://c35l7cxxgurie"]
+
+[ext_resource type="Script" path="res://root.gd" id="1_882b2"]
+[ext_resource type="Texture2D" uid="uid://bq5lysipagjqh" path="res://art/goodGuy-Sheet.png" id="1_41233"]
+[ext_resource type="Texture2D" uid="uid://cp5qx6ropj6fh" path="res://art/badGuy-Sheet.png" id="2_16x7p"]
+[ext_resource type="Texture2D" uid="uid://dnrmr40amjl4i" path="res://art/W_key.png" id="2_hbnmh"]
+[ext_resource type="Texture2D" uid="uid://cd2ra0ki4qht5" path="res://art/A_key.png" id="3_5hone"]
+[ext_resource type="PackedScene" uid="uid://b87njudih7dx6" path="res://key_set.tscn" id="3_75buc"]
+[ext_resource type="Texture2D" uid="uid://ctqkub1qos2ve" path="res://art/S_key.png" id="4_674ko"]
+[ext_resource type="Texture2D" uid="uid://dmpnjlyr5ular" path="res://art/D_key.png" id="5_l2jmt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig1wa"]
+atlas = ExtResource("1_41233")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cwk8"]
+atlas = ExtResource("1_41233")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bg6ci"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig1wa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cwk8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_642qm"]
+atlas = ExtResource("2_16x7p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2ttx"]
+atlas = ExtResource("2_16x7p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ivgbf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_642qm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2ttx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="root" type="Node2D"]
+script = ExtResource("1_882b2")
+w_key = ExtResource("2_hbnmh")
+a_key = ExtResource("3_5hone")
+s_key = ExtResource("4_674ko")
+d_key = ExtResource("5_l2jmt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(192, 496)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_bg6ci")
+frame_progress = 0.256363
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(960, 504)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_ivgbf")
+frame_progress = 0.201831
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1152.0
+offset_bottom = 304.0
+
+[node name="Sequence" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 48.0
+offset_right = 637.0
+offset_bottom = 93.0
+theme_override_font_sizes/font_size = 32
+text = "Sequence: "
+
+[node name="Keys" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 248.0
+offset_right = 362.0
+offset_bottom = 271.0
+text = "Keys Pressed:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/Keys"]
+layout_mode = 0
+offset_left = 120.0
+offset_right = 552.0
+offset_bottom = 40.0
+
+[node name="Key Set" parent="." instance=ExtResource("3_75buc")]
+position = Vector2(192, 176)
+
+[node name="Key Set2" parent="." instance=ExtResource("3_75buc")]
+position = Vector2(904, 176)
+
+[node name="Key Set3" parent="." instance=ExtResource("3_75buc")]
+position = Vector2(672, 176)
+
+[node name="Key Set4" parent="." instance=ExtResource("3_75buc")]
+position = Vector2(432, 176)

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Key_Set" load_steps=2 format=3 uid="uid://c6w866fui74bs"]
+
+[ext_resource type="Script" path="res://resources/key_set.gd" id="1_hxmpi"]
+
+[resource]
+script = ExtResource("1_hxmpi")
+key_set_num = 4
