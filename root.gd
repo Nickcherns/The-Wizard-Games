@@ -14,10 +14,10 @@ extends Node2D
 @export var s_key_fail: Texture2D
 @export var d_key_fail: Texture2D
 @export var Enemy: PackedScene
-@onready var user_key1 = $mainPanel/HBoxContainer/user_key1
-@onready var user_key2 = $mainPanel/HBoxContainer/user_key2
-@onready var user_key3 = $mainPanel/HBoxContainer/user_key3
-@onready var user_key4 = $mainPanel/HBoxContainer/user_key4
+@onready var user_key1 = $mainPanel/userPanel/HBoxContainer/user_key1
+@onready var user_key2 = $mainPanel/userPanel/HBoxContainer/user_key2
+@onready var user_key3 = $mainPanel/userPanel/HBoxContainer/user_key3
+@onready var user_key4 = $mainPanel/userPanel/HBoxContainer/user_key4
 @onready var rand_key_res1 = preload("res://resources/key_set1.tres")
 @onready var rand_key_res2 = preload("res://resources/key_set2.tres")
 @onready var rand_key_res3 = preload("res://resources/key_set3.tres")
@@ -108,7 +108,7 @@ func create_sprite2d(texture: Texture2D, user_key: String) -> void:
 		add_user_input(user_key4, user_key)
 		user_key4.add_child(sprite_array[-1])
 	if sprite_array.size() >= 4:
-		$mainPanel/HBoxContainer/Timer.start()
+		$mainPanel/userPanel/HBoxContainer/Timer.start()
 		set_rand_keys()
 		key_user_check()
 	
@@ -133,7 +133,7 @@ func add_user_input(key, user_input):
 		user_input_dict[key] = "a"
 
 func _on_timer_timeout():
-	$mainPanel/HBoxContainer/Timer.stop()
+	$mainPanel/userPanel/HBoxContainer/Timer.stop()
 	sprite_array.clear()
 	clear_children(user_key1)
 	clear_children(user_key2)
@@ -274,7 +274,6 @@ func player_take_damage():
 	
 func enemy_take_damage():
 	$Background.play("default")
-	$CrowdNoise.play()
 	score += 25
 
 func _on_quit_pressed():

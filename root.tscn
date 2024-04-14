@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c35l7cxxgurie"]
+[gd_scene load_steps=29 format=3 uid="uid://c35l7cxxgurie"]
 
 [ext_resource type="Script" path="res://root.gd" id="1_882b2"]
 [ext_resource type="Texture2D" uid="uid://dnrmr40amjl4i" path="res://art/W_key.png" id="2_hbnmh"]
@@ -18,8 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://dl7j40q2monf4" path="res://enemy.tscn" id="15_175gv"]
 [ext_resource type="Texture2D" uid="uid://1jwjdru4mr77" path="res://art/background-Sheet.png" id="15_r3dek"]
 [ext_resource type="StyleBox" uid="uid://3hhpn08mphay" path="res://resources/healthPanel.tres" id="15_vig78"]
+[ext_resource type="StyleBox" uid="uid://bl66n67jhoalj" path="res://themes/brownerPanel.tres" id="18_8qujs"]
 [ext_resource type="AudioStream" uid="uid://c7wr6e6ra5e2a" path="res://art/keyClick.wav" id="18_rowhm"]
 [ext_resource type="AudioStream" uid="uid://qnm61kp0qp2y" path="res://art/enemyDefeat.wav" id="19_kgrp2"]
+[ext_resource type="StyleBox" uid="uid://d3uq7rkajrtph" path="res://themes/brownPanel.tres" id="20_c2u8q"]
+[ext_resource type="StyleBox" uid="uid://okvl7l0tvhu4" path="res://themes/brownestPanel.tres" id="21_2efja"]
 [ext_resource type="AudioStream" uid="uid://dflguyq1n6hi7" path="res://art/crowdNoise.wav" id="21_xt76d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbeh2"]
@@ -56,25 +59,6 @@ animations = [{
 "name": &"default",
 "speed": 8.0
 }]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqdem"]
-bg_color = Color(0, 0, 0, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d0bh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3e5a"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkws6"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p178h"]
 
 [node name="root" type="Node2D"]
 script = ExtResource("1_882b2")
@@ -141,18 +125,51 @@ text = "Enemy Health: 100"
 offset_top = 344.0
 offset_right = 1152.0
 offset_bottom = 648.0
+theme_override_styles/panel = ExtResource("18_8qujs")
+
+[node name="Panel" type="Panel" parent="mainPanel"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 112.0
+offset_right = 392.0
+offset_bottom = 200.0
+theme_override_styles/panel = ExtResource("20_c2u8q")
+
+[node name="Panel2" type="Panel" parent="mainPanel"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 112.0
+offset_right = 560.0
+offset_bottom = 200.0
+theme_override_styles/panel = ExtResource("20_c2u8q")
+
+[node name="Panel3" type="Panel" parent="mainPanel"]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 112.0
+offset_right = 728.0
+offset_bottom = 200.0
+theme_override_styles/panel = ExtResource("20_c2u8q")
+
+[node name="Panel4" type="Panel" parent="mainPanel"]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 112.0
+offset_right = 896.0
+offset_bottom = 200.0
+theme_override_styles/panel = ExtResource("20_c2u8q")
 
 [node name="Key Set" parent="mainPanel" instance=ExtResource("3_75buc")]
-position = Vector2(328, 176)
+position = Vector2(312, 176)
 
 [node name="Key Set2" parent="mainPanel" instance=ExtResource("3_75buc")]
 position = Vector2(480, 176)
 
 [node name="Key Set3" parent="mainPanel" instance=ExtResource("3_75buc")]
-position = Vector2(632, 176)
+position = Vector2(648, 176)
 
 [node name="Key Set4" parent="mainPanel" instance=ExtResource("3_75buc")]
-position = Vector2(784, 176)
+position = Vector2(816, 176)
 
 [node name="GetReady" type="Label" parent="mainPanel"]
 layout_mode = 0
@@ -161,58 +178,68 @@ offset_bottom = 23.0
 
 [node name="Sequence" type="Label" parent="mainPanel"]
 layout_mode = 0
-offset_left = 472.0
+offset_left = 424.0
 offset_top = 48.0
-offset_right = 637.0
+offset_right = 671.0
 offset_bottom = 93.0
 theme_override_font_sizes/font_size = 32
-text = "Sequence: "
+text = "Spell Sequence: "
 
-[node name="Keys" type="Label" parent="mainPanel"]
+[node name="userPanel" type="Panel" parent="mainPanel"]
 layout_mode = 0
-offset_left = 264.0
-offset_top = 248.0
-offset_right = 370.0
-offset_bottom = 271.0
-text = "Keys Pressed:"
+offset_left = 256.0
+offset_top = 216.0
+offset_right = 768.0
+offset_bottom = 284.0
+theme_override_styles/panel = ExtResource("20_c2u8q")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="mainPanel"]
+[node name="Keys" type="Label" parent="mainPanel/userPanel"]
 layout_mode = 0
-offset_left = 416.0
-offset_top = 240.0
-offset_right = 672.0
-offset_bottom = 272.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 147.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Your Spell:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="mainPanel/userPanel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 16.0
+offset_right = 456.0
+offset_bottom = 48.0
 alignment = 1
 
-[node name="user_key1" type="Node2D" parent="mainPanel/HBoxContainer"]
+[node name="user_key1" type="Node2D" parent="mainPanel/userPanel/HBoxContainer"]
 position = Vector2(32, 16)
 
-[node name="user_key2" type="Node2D" parent="mainPanel/HBoxContainer"]
+[node name="user_key2" type="Node2D" parent="mainPanel/userPanel/HBoxContainer"]
 position = Vector2(96, 16)
 
-[node name="user_key3" type="Node2D" parent="mainPanel/HBoxContainer"]
+[node name="user_key3" type="Node2D" parent="mainPanel/userPanel/HBoxContainer"]
 position = Vector2(160, 16)
 
-[node name="user_key4" type="Node2D" parent="mainPanel/HBoxContainer"]
+[node name="user_key4" type="Node2D" parent="mainPanel/userPanel/HBoxContainer"]
 position = Vector2(224, 16)
 
-[node name="Timer" type="Timer" parent="mainPanel/HBoxContainer"]
+[node name="Timer" type="Timer" parent="mainPanel/userPanel/HBoxContainer"]
 wait_time = 0.5
 
 [node name="sequenceComplete" type="Label" parent="mainPanel"]
 visible = false
 layout_mode = 0
-offset_left = 856.0
-offset_top = 56.0
-offset_right = 1003.0
-offset_bottom = 79.0
-text = "Attack Summoned!"
+offset_left = 472.0
+offset_top = 8.0
+offset_right = 619.0
+offset_bottom = 31.0
+text = "Spell Summoned!"
 
 [node name="Score" type="Label" parent="mainPanel"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 23.0
-offset_right = 280.0
+offset_right = 320.0
 offset_bottom = 68.0
 theme_override_font_sizes/font_size = 32
 text = "Score: 000"
@@ -221,25 +248,30 @@ vertical_alignment = 1
 
 [node name="TimeLeft" type="Label" parent="mainPanel"]
 layout_mode = 0
-offset_left = 912.0
-offset_top = 16.0
+offset_left = 768.0
+offset_top = 25.0
 offset_right = 1088.0
-offset_bottom = 39.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 32
 text = "Time Left: "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Countdown" type="Label" parent="mainPanel/TimeLeft"]
 layout_mode = 0
-offset_left = 91.0
-offset_right = 131.0
-offset_bottom = 23.0
+offset_left = 240.0
+offset_right = 303.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 32
 text = "0:00"
 
 [node name="gameOverPanel" type="Panel" parent="."]
+visible = false
 offset_left = 344.0
 offset_top = 80.0
 offset_right = 736.0
 offset_bottom = 392.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_bqdem")
+theme_override_styles/panel = ExtResource("21_2efja")
 
 [node name="Restart" type="Button" parent="gameOverPanel"]
 layout_mode = 0
@@ -247,9 +279,12 @@ offset_left = 152.0
 offset_top = 144.0
 offset_right = 248.0
 offset_bottom = 178.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_5d0bh")
-theme_override_styles/hover = SubResource("StyleBoxFlat_c3e5a")
+theme_override_styles/normal = ExtResource("20_c2u8q")
+theme_override_styles/hover = ExtResource("21_2efja")
+theme_override_styles/pressed = ExtResource("20_c2u8q")
 text = "Restart"
 
 [node name="Quit" type="Button" parent="gameOverPanel"]
@@ -258,9 +293,12 @@ offset_left = 152.0
 offset_top = 192.0
 offset_right = 248.0
 offset_bottom = 226.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-theme_override_styles/normal = SubResource("StyleBoxFlat_bkws6")
-theme_override_styles/hover = SubResource("StyleBoxFlat_p178h")
+theme_override_styles/normal = ExtResource("20_c2u8q")
+theme_override_styles/hover = ExtResource("21_2efja")
+theme_override_styles/pressed = ExtResource("20_c2u8q")
 text = "Quit"
 
 [node name="GameOver" type="Label" parent="gameOverPanel"]
@@ -269,6 +307,7 @@ offset_left = 104.0
 offset_top = 40.0
 offset_right = 294.0
 offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Game Over!
 "
@@ -281,7 +320,7 @@ offset_left = 72.0
 offset_top = 96.0
 offset_right = 211.0
 offset_bottom = 130.0
-theme_override_colors/font_color = Color(0, 0.870588, 0.623529, 1)
+theme_override_colors/font_color = Color(0.686275, 0.988235, 0.0352941, 1)
 theme_override_font_sizes/font_size = 24
 text = "Final Score: "
 
@@ -304,7 +343,7 @@ wait_time = 120.0
 
 [connection signal="timeout" from="RandKeyChangeTimer" to="." method="_on_rand_key_change_timer_timeout"]
 [connection signal="tree_exited" from="Enemy" to="." method="_on_enemy_tree_exited"]
-[connection signal="timeout" from="mainPanel/HBoxContainer/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="mainPanel/userPanel/HBoxContainer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="gameOverPanel/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="gameOverPanel/Quit" to="." method="_on_quit_pressed"]
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

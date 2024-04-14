@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl7j40q2monf4"]
+[gd_scene load_steps=7 format=3 uid="uid://dl7j40q2monf4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_ifui1"]
 [ext_resource type="SpriteFrames" uid="uid://cujwudiafess8" path="res://resources/enemySpriteFrames.tres" id="2_0gl62"]
 [ext_resource type="PackedScene" uid="uid://io03iidw3ohi" path="res://attack.tscn" id="2_hp3g6"]
 [ext_resource type="AudioStream" uid="uid://cjp2i1hhygk1o" path="res://art/enemyAttack.wav" id="4_f6ls8"]
+[ext_resource type="AudioStream" uid="uid://dflguyq1n6hi7" path="res://art/crowdNoise.wav" id="5_apt5d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w1qq5"]
 radius = 24.0
@@ -32,6 +33,9 @@ shape = SubResource("CapsuleShape2D_w1qq5")
 
 [node name="enemyAttack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_f6ls8")
+
+[node name="crowd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_apt5d")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

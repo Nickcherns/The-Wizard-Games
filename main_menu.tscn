@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://f50562tvd0fg"]
+[gd_scene load_steps=12 format=3 uid="uid://f50562tvd0fg"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_en5rn"]
 [ext_resource type="Texture2D" uid="uid://1jwjdru4mr77" path="res://art/background-Sheet.png" id="1_voun7"]
@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://bl66n67jhoalj" path="res://themes/brownerPanel.tres" id="4_2x1iy"]
 [ext_resource type="StyleBox" uid="uid://d3uq7rkajrtph" path="res://themes/brownPanel.tres" id="5_kikrd"]
 [ext_resource type="AudioStream" uid="uid://c7wr6e6ra5e2a" path="res://art/keyClick.wav" id="6_v1hxt"]
+[ext_resource type="AudioStream" uid="uid://dflguyq1n6hi7" path="res://art/crowdNoise.wav" id="7_taxwc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kp3j0"]
 atlas = ExtResource("1_voun7")
@@ -71,7 +72,12 @@ offset_top = 57.0
 offset_right = 64.0
 offset_bottom = 110.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("5_kikrd")
+theme_override_styles/hover = ExtResource("4_2x1iy")
+theme_override_styles/pressed = ExtResource("5_kikrd")
 text = "Play"
 
 [node name="HowToPlay" type="Button" parent="MenuOptions"]
@@ -80,7 +86,12 @@ offset_left = 448.0
 offset_top = 129.0
 offset_right = 704.0
 offset_bottom = 182.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("5_kikrd")
+theme_override_styles/hover = ExtResource("4_2x1iy")
+theme_override_styles/pressed = ExtResource("5_kikrd")
 text = "How To Play"
 
 [node name="Quit" type="Button" parent="MenuOptions"]
@@ -89,7 +100,12 @@ offset_left = 512.0
 offset_top = 200.0
 offset_right = 640.0
 offset_bottom = 253.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("5_kikrd")
+theme_override_styles/hover = ExtResource("4_2x1iy")
+theme_override_styles/pressed = ExtResource("5_kikrd")
 text = "Quit"
 
 [node name="How To Play" type="Panel" parent="."]
@@ -139,18 +155,40 @@ text = "[b]How To Play:[/b]
 		-100 pts per hit on player"
 scroll_active = false
 
+[node name="close" type="Button" parent="How To Play"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.377
+anchor_top = 0.914
+anchor_right = 0.478
+anchor_bottom = 0.914
+offset_left = -0.104004
+offset_top = -16.042
+offset_right = 16.144
+offset_bottom = 19.958
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("5_kikrd")
+theme_override_styles/hover = ExtResource("5_kikrd")
+text = "Close"
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_left = 936.0
 offset_top = 616.0
 offset_right = 1140.0
 offset_bottom = 639.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Created by: Nick Chernock"
 
 [node name="keyClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_v1hxt")
 
+[node name="crowd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_taxwc")
+
 [connection signal="pressed" from="MenuOptions/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuOptions/HowToPlay" to="." method="_on_how_to_play_pressed"]
 [connection signal="pressed" from="MenuOptions/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="How To Play/close" to="." method="_on_close_pressed"]

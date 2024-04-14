@@ -28,6 +28,7 @@ func _on_timer_timeout():
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("attack"):
+		$crowd.play()
 		area.queue_free()
 		config.take_damage(damage_intake)
 		emit_signal("enemy_attacked")

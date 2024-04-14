@@ -5,7 +5,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play("default")
-
+	$crowd.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -13,16 +13,23 @@ func _process(delta):
 
 
 func _on_how_to_play_pressed():
-	$"How To Play".visible = true
 	$keyClick.play()
+	$"How To Play".visible = true
+	
 
 
 func _on_play_pressed():
 	$keyClick.play()
+	$crowd.play()
 	get_tree().change_scene_to_packed(game_scene)
 
 
 func _on_quit_pressed():
-	get_tree().quit()
 	$keyClick.play()
+	get_tree().quit()
+	
+
+func _on_close_pressed():
+	$keyClick.play()
+	$"How To Play".visible = false
 	
