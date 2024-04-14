@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dl7j40q2monf4"]
+[gd_scene load_steps=6 format=3 uid="uid://dl7j40q2monf4"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_ifui1"]
 [ext_resource type="SpriteFrames" uid="uid://cujwudiafess8" path="res://resources/enemySpriteFrames.tres" id="2_0gl62"]
 [ext_resource type="PackedScene" uid="uid://io03iidw3ohi" path="res://attack.tscn" id="2_hp3g6"]
+[ext_resource type="AudioStream" uid="uid://cjp2i1hhygk1o" path="res://art/enemyAttack.wav" id="4_f6ls8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w1qq5"]
 radius = 24.0
@@ -22,12 +23,15 @@ sprite_frames = ExtResource("2_0gl62")
 wait_time = 5.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-32, 0)
+position = Vector2(-80, 0)
 
 [node name="Area2D" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_w1qq5")
+
+[node name="enemyAttack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_f6ls8")
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

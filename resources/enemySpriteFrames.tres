@@ -1,25 +1,35 @@
-[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cujwudiafess8"]
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://cujwudiafess8"]
 
-[ext_resource type="Texture2D" uid="uid://cp5qx6ropj6fh" path="res://art/badGuy-Sheet.png" id="1_dr8wa"]
+[ext_resource type="Texture2D" uid="uid://cdy7mqxkfgvg1" path="res://art/enemyWizard-SheetV2.png" id="1_nodfm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_642qm"]
-atlas = ExtResource("1_dr8wa")
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwo0c"]
+atlas = ExtResource("1_nodfm")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t2ttx"]
-atlas = ExtResource("1_dr8wa")
+[sub_resource type="AtlasTexture" id="AtlasTexture_04mdv"]
+atlas = ExtResource("1_nodfm")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh182"]
+atlas = ExtResource("1_nodfm")
+region = Rect2(64, 0, 32, 32)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_642qm")
+"texture": SubResource("AtlasTexture_bwo0c")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t2ttx")
+"texture": SubResource("AtlasTexture_04mdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh182")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwo0c")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
-"speed": 5.0
+"speed": 7.0
 }]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c35l7cxxgurie"]
+[gd_scene load_steps=31 format=3 uid="uid://c35l7cxxgurie"]
 
 [ext_resource type="Script" path="res://root.gd" id="1_882b2"]
 [ext_resource type="Texture2D" uid="uid://dnrmr40amjl4i" path="res://art/W_key.png" id="2_hbnmh"]
@@ -16,6 +16,46 @@
 [ext_resource type="Texture2D" uid="uid://mk4spxcl0fub" path="res://art/D_key_fail.png" id="13_pq0ht"]
 [ext_resource type="PackedScene" uid="uid://bgcrey6lr8xlt" path="res://player.tscn" id="14_bhjfg"]
 [ext_resource type="PackedScene" uid="uid://dl7j40q2monf4" path="res://enemy.tscn" id="15_175gv"]
+[ext_resource type="Texture2D" uid="uid://1jwjdru4mr77" path="res://art/background-Sheet.png" id="15_r3dek"]
+[ext_resource type="StyleBox" uid="uid://3hhpn08mphay" path="res://resources/healthPanel.tres" id="15_vig78"]
+[ext_resource type="AudioStream" uid="uid://c7wr6e6ra5e2a" path="res://art/keyClick.wav" id="18_rowhm"]
+[ext_resource type="AudioStream" uid="uid://qnm61kp0qp2y" path="res://art/enemyDefeat.wav" id="19_kgrp2"]
+[ext_resource type="AudioStream" uid="uid://dflguyq1n6hi7" path="res://art/crowdNoise.wav" id="21_xt76d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbeh2"]
+atlas = ExtResource("15_r3dek")
+region = Rect2(0, 0, 1152, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qng56"]
+atlas = ExtResource("15_r3dek")
+region = Rect2(1152, 0, 1152, 350)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_62fap"]
+atlas = ExtResource("15_r3dek")
+region = Rect2(2304, 0, 1152, 350)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_piehe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbeh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qng56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_62fap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qng56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbeh2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqdem"]
 bg_color = Color(0, 0, 0, 1)
@@ -52,30 +92,49 @@ s_key_fail = ExtResource("12_pradt")
 d_key_fail = ExtResource("13_pq0ht")
 Enemy = ExtResource("15_175gv")
 
+[node name="Background" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 176)
+sprite_frames = SubResource("SpriteFrames_piehe")
+frame = 4
+frame_progress = 1.0
+
+[node name="PlayerHealthPanel" type="Panel" parent="."]
+offset_left = 112.0
+offset_top = 288.0
+offset_right = 280.0
+offset_bottom = 328.0
+theme_override_styles/panel = ExtResource("15_vig78")
+
+[node name="EnemyHealthPanel" type="Panel" parent="."]
+offset_left = 832.0
+offset_top = 288.0
+offset_right = 1008.0
+offset_bottom = 328.0
+theme_override_styles/panel = ExtResource("15_vig78")
+
 [node name="RandKeyChangeTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("14_bhjfg")]
-position = Vector2(192, 152)
+position = Vector2(192, 208)
 damage_intake = 10
 
 [node name="Player Health" type="Label" parent="."]
 offset_left = 128.0
-offset_top = 256.0
+offset_top = 296.0
 offset_right = 268.0
-offset_bottom = 279.0
+offset_bottom = 319.0
 text = "Player Health: 100"
 
 [node name="Enemy" parent="." instance=ExtResource("15_175gv")]
-position = Vector2(1192, 152)
-damage_intake = 25
+position = Vector2(1192, 208)
 
 [node name="Enemy Health" type="Label" parent="."]
 offset_left = 848.0
-offset_top = 256.0
+offset_top = 296.0
 offset_right = 992.0
-offset_bottom = 279.0
+offset_bottom = 319.0
 text = "Enemy Health: 100"
 
 [node name="mainPanel" type="Panel" parent="."]
@@ -149,8 +208,33 @@ offset_right = 1003.0
 offset_bottom = 79.0
 text = "Attack Summoned!"
 
+[node name="Score" type="Label" parent="mainPanel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 23.0
+offset_right = 280.0
+offset_bottom = 68.0
+theme_override_font_sizes/font_size = 32
+text = "Score: 000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLeft" type="Label" parent="mainPanel"]
+layout_mode = 0
+offset_left = 912.0
+offset_top = 16.0
+offset_right = 1088.0
+offset_bottom = 39.0
+text = "Time Left: "
+
+[node name="Countdown" type="Label" parent="mainPanel/TimeLeft"]
+layout_mode = 0
+offset_left = 91.0
+offset_right = 131.0
+offset_bottom = 23.0
+text = "0:00"
+
 [node name="gameOverPanel" type="Panel" parent="."]
-visible = false
 offset_left = 344.0
 offset_top = 80.0
 offset_right = 736.0
@@ -182,20 +266,45 @@ text = "Quit"
 [node name="GameOver" type="Label" parent="gameOverPanel"]
 layout_mode = 0
 offset_left = 104.0
-offset_top = 56.0
+offset_top = 40.0
 offset_right = 294.0
-offset_bottom = 101.0
+offset_bottom = 85.0
 theme_override_font_sizes/font_size = 32
 text = "Game Over!
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="FinalScore" type="Label" parent="gameOverPanel"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 96.0
+offset_right = 211.0
+offset_bottom = 130.0
+theme_override_colors/font_color = Color(0, 0.870588, 0.623529, 1)
+theme_override_font_sizes/font_size = 24
+text = "Final Score: "
+
 [node name="EnemySpawn" type="Marker2D" parent="."]
-position = Vector2(1192, 152)
+position = Vector2(1192, 208)
+
+[node name="KeyClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_rowhm")
+
+[node name="EnemyDefeat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_kgrp2")
+
+[node name="CrowdNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_xt76d")
+pitch_scale = 0.89
+attenuation = 1.56917
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 120.0
 
 [connection signal="timeout" from="RandKeyChangeTimer" to="." method="_on_rand_key_change_timer_timeout"]
 [connection signal="tree_exited" from="Enemy" to="." method="_on_enemy_tree_exited"]
 [connection signal="timeout" from="mainPanel/HBoxContainer/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="gameOverPanel/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="gameOverPanel/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

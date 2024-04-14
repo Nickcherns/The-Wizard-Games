@@ -32,27 +32,35 @@ var rand_key3: String
 var rand_key4: String
 var rand_key_array: Array[String] = [rand_key1, rand_key2, rand_key3, rand_key4]
 var key_set_node_array: Array = [$"Key Set", $"Key Set2", $"Key Set3", $"Key Set4"]
+var score: int
 
 @onready var player_config: Resource = preload("res://resources/player.tres")
 @onready var enemy_config: Resource = preload("res://resources/enemy.tres")
 
 signal correct_input
+signal failed_input
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	base_key_set.timer_start.connect(start_timer)
 	$gameOverPanel.visible = false
+	$Player.player_attacked.connect(player_take_damage)
+	$GameTimer.start()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("W"):
+		$KeyClick.play()
 		create_sprite2d(w_key, "w")
 	elif Input.is_action_just_pressed("A"):
+		$KeyClick.play()
 		create_sprite2d(a_key, "a")
 	elif Input.is_action_just_pressed("S"):
+		$KeyClick.play()
 		create_sprite2d(s_key, "s")
 	elif Input.is_action_just_pressed("D"):
+		$KeyClick.play()
 		create_sprite2d(d_key, "d")
 	
 	if player_config.health < 100:
@@ -64,11 +72,17 @@ func _process(delta):
 	else:
 		$"Enemy Health".text = "Enemy Health: %03d" %  enemy_config.health
 		
+	$mainPanel/Score.text = "Score: %03d" % score
 	if player_config.health <= 0:
+		$CrowdNoise.play()
 		game_over()
 	if enemy_config.health <= 0:
+		$CrowdNoise.play()
+		$EnemyDefeat.play()
 		enemy_death()
 		
+	$mainPanel/TimeLeft/Countdown.text = "%01d: %02d" % time_left()
+	
 func start_timer():
 	$RandKeyChangeTimer.start()
 
@@ -100,6 +114,7 @@ func create_sprite2d(texture: Texture2D, user_key: String) -> void:
 	
 func game_over():
 	$gameOverPanel.visible = true
+	$gameOverPanel/FinalScore.text = "Score: %03d" % score
 
 func clear_children(node: Node2D):
 	$mainPanel/sequenceComplete.visible = false
@@ -232,6 +247,8 @@ func key_user_check():
 	if correct_input_key1 == true and correct_input_key2 == true and correct_input_key3 == true and correct_input_key4 == true: 
 		$mainPanel/sequenceComplete.visible = true
 		emit_signal("correct_input")
+	else:
+		emit_signal("failed_input")
 			
 func set_rand_keys():
 	rand_key_array.clear()
@@ -241,10 +258,24 @@ func set_rand_keys():
 	rand_key4 = rand_key_res4.rand_key
 	rand_key_array = [rand_key1, rand_key2, rand_key3, rand_key4]
 
+func time_left():
+	var time_left = $GameTimer.time_left
+	var min = floor(time_left / 60)
+	var sec = int(time_left) % 60
+	return [min, sec]
 
 func _on_rand_key_change_timer_timeout():
 	set_rand_keys()
 
+func player_take_damage():
+	$Background.play("default")
+	$CrowdNoise.play()
+	score -= 100
+	
+func enemy_take_damage():
+	$Background.play("default")
+	$CrowdNoise.play()
+	score += 25
 
 func _on_quit_pressed():
 	get_tree().quit()
@@ -255,6 +286,9 @@ func _on_restart_pressed():
 	enemy_config.health = 100
 		
 func enemy_death():
+	$Background.play("default")
+	
+	score += 75
 	var root_children = $".".get_children()
 	var enemy_node: Node2D
 	for i in len(root_children):
@@ -265,4 +299,9 @@ func enemy_death():
 	var new_enemy = Enemy.instantiate()
 	$".".add_child(new_enemy)
 	new_enemy.add_to_group("enemy")
+	new_enemy.enemy_attacked.connect(enemy_take_damage)
 	new_enemy.global_transform = $EnemySpawn.global_transform
+
+
+func _on_game_timer_timeout():
+	game_over()
