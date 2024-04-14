@@ -4,19 +4,17 @@ extends Node2D
 @onready var a: Sprite2D = $A
 @onready var s: Sprite2D = $S
 @onready var d: Sprite2D = $D
-@onready var timer: Timer = $Timer
 @onready var key_set: Array[Sprite2D] = [w, a, s, d]
 @onready var key_set_string: Array[String] = ["w", "a", "s", "d"]
 @onready var rand_key: Sprite2D
 @onready var key_set_res: Resource
+@onready var root_node = $"../.."
 var prev_key: Sprite2D
 var KEY_SET_FRAME_DEFAULT: int = 0
-@onready var root_node = $"../.."
 
 signal timer_start
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#$Timer.start()
 	emit_signal("timer_start")
 	if $".".name == "Key Set":
 		key_set_res = preload("res://resources/key_set1.tres")
@@ -33,7 +31,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	for i in key_set.size():
 		if rand_key != key_set[i]:
 			key_set[i].frame = KEY_SET_FRAME_DEFAULT
@@ -44,7 +42,6 @@ func return_random_key() -> Sprite2D:
 	
 	
 func handle_correct_input():
-	#$Timer.start()
 	set_random_keys()
 
 func set_random_keys():
@@ -61,11 +58,5 @@ func set_random_keys():
 		key_set_res.rand_key = ("s")
 	if rand_key == d:
 		key_set_res.rand_key = ("d")
-	key_set_res.print_rand_key()
-	#if rand_key == prev_key:
-		#_on_timer_timeout()
 	rand_key.frame = 1
-
-func _on_timer_timeout():
-	pass
 	

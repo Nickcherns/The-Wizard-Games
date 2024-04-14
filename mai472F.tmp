@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://f50562tvd0fg"]
+[gd_scene load_steps=12 format=3 uid="uid://f50562tvd0fg"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_en5rn"]
 [ext_resource type="Texture2D" uid="uid://1jwjdru4mr77" path="res://art/background-Sheet.png" id="1_voun7"]
@@ -7,7 +7,6 @@
 [ext_resource type="StyleBox" uid="uid://d3uq7rkajrtph" path="res://themes/brownPanel.tres" id="5_kikrd"]
 [ext_resource type="AudioStream" uid="uid://c7wr6e6ra5e2a" path="res://art/keyClick.wav" id="6_v1hxt"]
 [ext_resource type="AudioStream" uid="uid://dflguyq1n6hi7" path="res://art/crowdNoise.wav" id="7_taxwc"]
-[ext_resource type="AudioStream" uid="uid://dkuwj1k8eby1p" path="res://art/thewizardgames.wav" id="8_pvu84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kp3j0"]
 atlas = ExtResource("1_voun7")
@@ -235,9 +234,6 @@ theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = ExtResource("5_kikrd")
 theme_override_styles/hover = ExtResource("5_kikrd")
 text = "Continue..."
-
-[node name="TheWizardGames" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_pvu84")
 
 [connection signal="pressed" from="MenuOptions/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuOptions/HowToPlay" to="." method="_on_how_to_play_pressed"]

@@ -34,8 +34,10 @@ shape = SubResource("CapsuleShape2D_w1qq5")
 [node name="enemyAttack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_f6ls8")
 
-[node name="crowd" type="AudioStreamPlayer2D" parent="."]
+[node name="CrowdNoise" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_apt5d")
+pitch_scale = 0.89
+attenuation = 1.56917
 
 [connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
