@@ -276,7 +276,7 @@ func _on_rand_key_change_timer_timeout():
 func player_take_damage():
 	$Background.play("default")
 	$CrowdNoise.play()
-	score -= 100
+	score -= 50
 	
 func enemy_take_damage():
 	$Background.play("default")

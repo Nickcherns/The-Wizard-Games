@@ -6,6 +6,7 @@ func _ready():
 	$AnimatedSprite2D.play("default")
 	game_scene = load("res://root.tscn")
 	$TheWizardGames.play()
+	
 func _process(_delta):
 	pass
 

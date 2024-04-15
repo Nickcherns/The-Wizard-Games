@@ -178,12 +178,14 @@ offset_bottom = 23.0
 
 [node name="Sequence" type="Label" parent="mainPanel"]
 layout_mode = 0
-offset_left = 408.0
+offset_left = 248.0
 offset_top = 8.0
-offset_right = 738.0
+offset_right = 912.0
 offset_bottom = 53.0
 theme_override_font_sizes/font_size = 32
-text = "Match the Sequence! "
+text = "Match the Summon Sequence! "
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="userPanel" type="Panel" parent="mainPanel"]
 layout_mode = 0
@@ -201,7 +203,7 @@ offset_right = 147.0
 offset_bottom = 50.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
-text = "Your Spell:"
+text = "Your Summon:"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="mainPanel/userPanel"]
 layout_mode = 0
@@ -212,16 +214,16 @@ offset_bottom = 48.0
 alignment = 1
 
 [node name="user_key1" type="Node2D" parent="mainPanel/userPanel/HBoxContainer"]
-position = Vector2(32, 16)
+position = Vector2(56, 16)
 
 [node name="user_key2" type="Node2D" parent="mainPanel/userPanel/HBoxContainer"]
-position = Vector2(96, 16)
+position = Vector2(120, 16)
 
 [node name="user_key3" type="Node2D" parent="mainPanel/userPanel/HBoxContainer"]
-position = Vector2(160, 16)
+position = Vector2(184, 16)
 
 [node name="user_key4" type="Node2D" parent="mainPanel/userPanel/HBoxContainer"]
-position = Vector2(224, 16)
+position = Vector2(248, 16)
 
 [node name="Timer" type="Timer" parent="mainPanel/userPanel/HBoxContainer"]
 wait_time = 0.5

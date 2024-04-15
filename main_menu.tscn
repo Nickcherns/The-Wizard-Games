@@ -103,10 +103,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -240.0
-offset_top = -226.0
-offset_right = 312.0
-offset_bottom = 227.0
+offset_left = -400.0
+offset_top = -281.5
+offset_right = 400.0
+offset_bottom = 281.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("5_kikrd")
@@ -118,10 +118,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -252.0
-offset_top = -215.5
-offset_right = 252.0
-offset_bottom = 215.5
+offset_left = -368.0
+offset_top = -249.5
+offset_right = 368.0
+offset_bottom = 249.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -130,29 +130,33 @@ theme_override_constants/outline_size = 1
 bbcode_enabled = true
 text = "[b]How To Play:[/b]
 
-	You will be presented with a spell sequence that requires you to match the sequence exactly. 
-	Each sequence will contain either W A S D, that you must match in the correct sequence with your keyboard in order to attack.
+	You will be presented with a summon sequence that requires you to match the sequence exactly as shown. 
+	Each sequence will display a random highlighted key for each of the W A S D displays. You must match the sequence with your own key inputs whether W, A, S, or D. 
 	The spell sequence will only change when you match the sequence correctly.
+			[b]For Example[/b]: If the summon sequence shows  the keys [b]S - D - W - A[/b] highlighted, then you must then enter [b] S - D - W - A [/b] on your keyboard in order to summon an attack and move on to the next sequence.
+	
 	Each player attack does 25 damage to the enemy
-	Each enemy attack does 10 damage
+	Each enemy attack does 10 damage to the player
+	If your health drops to 0, then it's game over
+	[b]You are unable to reverse key inputs. You will need to enter a full sequence to clear the input field[/b]
 
-[b]Score :[/b]
+[b]Scoring :[/b]
 		25 pts per hit on enemy
-		75 pts per enemy beaten
-		-100 pts per hit on player"
+		75 pts per enemy defeated in combat
+		-50 pts per hit you take"
 scroll_active = false
 
 [node name="close" type="Button" parent="How To Play"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.377
-anchor_top = 0.914
-anchor_right = 0.478
-anchor_bottom = 0.914
-offset_left = -0.104004
-offset_top = -16.042
-offset_right = 16.144
-offset_bottom = 19.958
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -55.0
+offset_right = 64.0
+offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -212,7 +216,7 @@ bbcode_enabled = true
 text = "				[b]Welcome to the 95th annual Wizards Games! [/b]
 Every year each wizard is required to showcase their skills in mutual combat! Using the niche skill of Summoning, each wizard is put up against their fellow wizards to display their skills in a real-life battle. 
 
-Each round will run for two minutes and the wizard with the highest score wins! Each hit will reward 25 points and each wizard beaten will reward 75 points! Don't relax though, if another wizard hits you, you will be deducted 100 points! Careful though, you only have 100 health and if the other wizards beat you then it's game over! 
+Each round will run for two minutes and the wizard with the highest score wins! Each hit will reward 25 points and each wizard beaten will reward 75 points! Don't relax though, if another wizard hits you, you will be deducted 50 points! Careful though, you only have 100 health and if the other wizards beat you then it's game over! 
 Keep your summoning hands warmed up and don't miss a step in your casts!
 "
 scroll_active = false
